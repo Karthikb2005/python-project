@@ -10,7 +10,7 @@ from config import ELEVENLABS_API_KEY
 
 
 elevenlabs = ElevenLabs(
-    api_key=ELEVENLABS_API_KEY,
+    api_key="sk_2d2b3caba756f4e7afeff3b71d381eb017bdfae4571dda61"
 )
 
 
