@@ -50,5 +50,8 @@ def gallery():
     print(reels)
     return render_template("gallery.html", reels=reels)
 
-app.run(debug=True)
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+os.makedirs("static/reels", exist_ok=True)
 
+if __name__ == "__main__":
+    app.run(debug=True)
