@@ -7,26 +7,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="static/css/style.css">
-    <style>
-        .notice-card {
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: center;
-            margin-top: 5rem;
-        }
-        .notice-icon {
-            font-size: 4rem;
-            color: #405DE6;
-            margin-bottom: 1.5rem;
-        }
-    </style>
+    <link rel="stylesheet" href="static/css/create.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="./index.html">AI Reel Generator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
@@ -37,24 +26,61 @@
         </div>
     </nav>
 
-    <div class="container">
-        <div class="notice-card">
-            <i class="fas fa-server notice-icon"></i>
-            <h2>Server Required</h2>
-            <p class="lead">The "Create Reel" feature requires a Python backend to process videos.</p>
-            <hr>
-            <p>To use this feature, please run the application locally:</p>
-            <div class="bg-light p-3 rounded mb-4">
-                <code>python main.py</code>
+    <section class="upload-section">
+        <div class="container">
+            <div class="upload-container">
+                <h1 class="upload-title">Create Your Reel</h1>
+                <p class="upload-instructions">Upload your video files to create an amazing reel. You can upload multiple files.</p>
+                
+                <form id="demoForm">
+                    <div class="fallback">
+                        <div id="fileInputs">
+                            <div class="file-input-group">
+                                <input name="file1" type="file" class="file-input" />
+                                <button type="button" class="remove-file-btn" onclick="removeFileInput(this)" disabled>×</button>
+                            </div>
+                        </div>
+                        <button type="button" class="add-file-btn" onclick="addFileInput()">+ Add File</button>
+                    </div>
+                    
+                    <div class="text-input-container">
+                        <textarea class="text-input" id="textInput" name="text" placeholder="Enter your text to be added as voice here..." rows="4"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        Create Reel
+                    </button>
+                </form>
             </div>
-            <a href="https://github.com/Karthikb2005/python-project" class="btn btn-primary">View Setup Guide</a>
         </div>
-    </div>
+    </section>
 
-    <footer class="mt-5">
-        <div class="container text-center text-white">
+    <footer>
+        <div class="container text-center text-white py-4">
             <p>© 2024 AI Reel Generator. All rights reserved.</p>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let fileCounter = 2;
+        function addFileInput() {
+            const fileInputs = document.getElementById('fileInputs');
+            const newFileInput = document.createElement('div');
+            newFileInput.className = 'file-input-group';
+            newFileInput.innerHTML = `<input type="file" class="file-input" /><button type="button" class="remove-file-btn" onclick="removeFileInput(this)">×</button>`;
+            fileInputs.appendChild(newFileInput);
+            fileCounter++;
+        }
+        function removeFileInput(button) {
+            button.parentElement.remove();
+        }
+
+        // Add demo alert
+        document.getElementById('demoForm').onsubmit = function(e) {
+            e.preventDefault();
+            alert("This is a demo! To actually create a reel, please run the app locally using 'python main.py' and visit localhost:5000.");
+        };
+    </script>
 </body>
 </html>
