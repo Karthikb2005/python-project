@@ -1,16 +1,12 @@
-
 import os
-import uuid
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 from elevenlabs import VoiceSettings
 from elevenlabs.client import ElevenLabs
-from config import ELEVENLABS_API_KEY
 
-# load_dotenv()
-
+load_dotenv()
 
 elevenlabs = ElevenLabs(
-    api_key="sk_2d2b3caba756f4e7afeff3b71d381eb017bdfae4571dda61"
+    api_key=os.getenv("ELEVENLABS_API_KEY")
 )
 
 
